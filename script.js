@@ -14,27 +14,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Questions directly in JS (no fetch)
     const questionsData = [
-        { topic: "HTML", type: "MCQ", marks: 2, question: "Which HTML tag is used to create a hyperlink?\na) <a>\nb) <link>\nc) <href>\nd) <url>", answer: "a) <a>" },
-        { topic: "HTML", type: "MCQ", marks: 2, question: "Which attribute is used to provide alternative text for an image?\na) title\nb) alt\nc) src\nd) caption", answer: "b) alt" },
-        { topic: "HTML", type: "Code Completion", marks: 2, question: "Complete the code to create an ordered list with three items: Apple, Banana, Mango.\n<_____>\n  <li>Apple</li>\n  <li>Banana</li>\n  <li>Mango</li>\n</_____>", answer: "<ol> ... </ol>" },
+        { topic: "HTML", type: "MCQ", marks: 0.5, question: "Which HTML tag is used to create a hyperlink?\na) <a>\nb) <link>\nc) <href>\nd) <url>", answer: "a) <a>" },
+        { topic: "HTML", type: "MCQ", marks: 0.5, question: "Which attribute is used to provide alternative text for an image?\na) title\nb) alt\nc) src\nd) caption", answer: "b) alt" },
+        {
+            topic: "HTML",
+            type: "Code Completion",
+            marks: 1,
+            question: "Complete the code to create an ordered list with three items: Apple, Banana, Mango.\n<_____>\n  <li>Apple</li>\n  <li>Banana</li>\n  <li>Mango</li>\n</_____>\nAnd explain what is <li>?",
+            answer: "<ol>...</ol>\n<li> stands for 'list item' and is used to define an item in ordered (<ol>) or unordered (<ul>) lists."
+        },
         {
             topic: "HTML",
             type: "Theory",
-            marks: 3,
+            marks: 1,
             question: "What is the difference between HTML tags and attributes? Give one example.",
             answer: "Tags define elements (e.g., <p>), while attributes provide additional information about elements (e.g., <img src='image.jpg'> where src is an attribute)."
         },
-        { topic: "CSS", type: "MCQ", marks: 2, question: "Which CSS property is used to change the text color?\na) background-color\nb) text-color\nc) color\nd) font-color", answer: "c) color" },
-        { topic: "CSS", type: "Code Debugging", marks: 2, question: "Find and correct the error:\np {\n  font-size: 16;\n}", answer: "Missing unit — should be: font-size: 16px;" },
+        {
+            topic: "HTML",
+            type: "Theory",
+            marks: 2,
+            question: "Write the basic structure of an HTML document (template) with all the necessary tags.",
+            answer: "<!DOCTYPE html>\n<html>\n<head>\n    <title>Page Title</title>\n</head>\n<body>\n    <!-- Content goes here -->\n</body>\n</html>"
+        },
+        { topic: "CSS", type: "MCQ", marks: 0.5, question: "Which CSS property is used to change the text color?\na) background-color\nb) text-color\nc) color\nd) font-color", answer: "c) color" },
+        { topic: "CSS", type: "Code Debugging", marks: 0.5, question: "Find and correct the error:\np {\n  font-size: 16;\n}", answer: "Missing unit — should be: font-size: 16px;" },
         { topic: "CSS", type: "Theory", marks: 3, question: "Describe the difference between inline, internal, and external CSS. Include an example of each.", answer: "Inline: style=\"color:red;\"; Internal: <style> in head; External: linked CSS file.(note : write in brief)" },
         {
             topic: "CSS",
             type: "Theory",
-            marks: 3,
+            marks: 1,
             question: "What is the :hover selector in CSS and how is it used? Give an example.",
             answer: "The :hover selector is used to apply styles when the user places the mouse pointer over an element. Example: button:hover { background-color: blue; } changes the button's background to blue when hovered."
         },
-        { topic: "JavaScript", type: "MCQ", marks: 2, question: "Which symbol is used for single-line comments in JavaScript?\na) <!-- -->\nb) //\nc) /* */\nd) #", answer: "b) //" },
+        { topic: "JavaScript", type: "MCQ", marks: 0.5, question: "Which symbol is used for single-line comments in JavaScript?\na) <!-- -->\nb) //\nc) /* */\nd) #", answer: "b) //" },
         {
             topic: "JavaScript",
             type: "Coding",
@@ -86,20 +99,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 "  const z = 30;\n" +
                 "}"
         },
-        { topic: "Git", type: "MCQ", marks: 2, question: "Which command is used to check the current status of your repository?\na) git check\nb) git status\nc) git log\nd) git diff", answer: "b) git status" },
-        { topic: "Git", type: "MCQ", marks: 2, question: "Which command is used to download a repository from GitHub?\na) git fetch\nb) git download\nc) git clone\nd) git pull", answer: "c) git clone" },
+        { topic: "Git", type: "MCQ", marks: 0.5, question: "Which command is used to check the current status of your repository?\na) git check\nb) git status\nc) git log\nd) git diff", answer: "b) git status" },
+        { topic: "Git", type: "MCQ", marks: 0.5, question: "Which command is used to download a repository from GitHub?\na) git fetch\nb) git download\nc) git clone\nd) git pull", answer: "c) git clone" },
         {
             topic: "Git",
             type: "Coding",
-            marks: 4,
+            marks: 3,
             question: "Write the complete sequence of Git commands to stage all changes, commit them with your message , and push to the remote repository.",
             answer: `git add .\ngit commit -m "Initial commit"\ngit push`
         },
-        { topic: "HTML", type: "MCQ", marks: 2, question: "In HTML5, which tag is used to define navigation links?\na) <navigate>\nb) <nav>\nc) <navigation>\nd) <links>", answer: "b) <nav>" },
-        { topic: "JavaScript", type: "Code Output Prediction", marks: 3, question: "What will be the output of:\nconsole.log(2 + '2');\nconsole.log(2 - '2');", answer: "22 and 0" },
-        { topic: "CSS", type: "Code Completion", marks: 3, question: "Write a CSS rule to make all <h1> elements blue and center-aligned.\nh1 {\n  color: _____;\n  text-align: _____;\n}", answer: "color: blue; text-align: center;" },
-        { topic: "Git", type: "MCQ", marks: 2, question: "In Git, which command shows the commit history?\na) git history\nb) git commits\nc) git log\nd) git show", answer: "c) git log" },
-        { topic: "Web Dev", type: "Theory", marks: 3, question: "Explain what a responsive website is and name two ways to make a website responsive.", answer: "Responsive = adapts to screen size. Ways: media queries, fluid grids." }
+        { topic: "HTML", type: "MCQ", marks: 0.5, question: "In HTML5, which tag is used to define navigation links?\na) <navigate>\nb) <nav>\nc) <navigation>\nd) <links>", answer: "b) <nav>" },
+        { topic: "JavaScript", type: "Code Output Prediction", marks: 0.5, question: "What will be the output of:\nconsole.log(2 + '2');\nconsole.log(2 - '2');", answer: "22 and 0" },
+        { topic: "CSS", type: "Code Completion", marks: 1, question: "Write a CSS rule to make all <h1> elements blue and center-aligned.\nh1 {\n  color: _____;\n  text-align: _____;\n}", answer: "color: blue; text-align: center;" },
+        { topic: "Git", type: "MCQ", marks: 0.5, question: "In Git, which command shows the commit history?\na) git history\nb) git commits\nc) git log\nd) git show", answer: "c) git log" },
+        { topic: "Web Dev", type: "Theory", marks: 0.5, question: "Explain what a responsive website is and name two ways to make a website responsive.", answer: "Responsive = adapts to screen size. Ways: media queries, fluid grids." }
     ];
 
     function displayQuestions(questions) {
